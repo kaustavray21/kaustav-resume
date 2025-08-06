@@ -39,12 +39,50 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
+
+      /* --- ADDED FOR PDF DOWNLOAD --- */
+      @media print {
+        body {
+          background-color: #ffffff; /* Ensure background is white on print */
+        }
+        .resume-container {
+          margin: 0;
+          padding: 1.5rem;
+          max-width: 100%;
+          box-shadow: none; /* Remove shadow for cleaner PDF */
+        }
+        .no-print {
+          display: none; /* Hide elements with this class when printing */
+        }
+      }
+      /* --- END OF ADDED STYLES --- */
     </style>
   </head>
   <body>
     <div
-      class="max-w-4xl mx-auto my-6 p-6 sm:p-8 bg-white rounded-lg shadow-xl"
+      class="max-w-4xl mx-auto my-6 p-6 sm:p-8 bg-white rounded-lg shadow-xl resume-container relative"
     >
+      <button
+        id="download-btn"
+        title="Download as PDF"
+        class="no-print absolute top-4 right-4 p-2 text-gray-500 rounded-full hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        <svg
+          class="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          />
+        </svg>
+      </button>
+
       <header class="mb-8 flex justify-between items-start">
         <div>
           <h1 class="text-3xl sm:text-4xl font-bold">Kaustav Kr. Sinha Ray</h1>
@@ -340,5 +378,12 @@
         </section>
       </main>
     </div>
+
+    <script>
+      document.getElementById("download-btn").addEventListener("click", () => {
+        // The print() method opens the print dialog, which can be used to save as PDF.
+        window.print();
+      });
+    </script>
   </body>
 </html>
